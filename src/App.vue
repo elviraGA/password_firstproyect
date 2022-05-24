@@ -1,26 +1,43 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <my-header title="Password🎲"></my-header>
+  <the-instructions></the-instructions>
+  <las-palabras></las-palabras>
+  
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import MyHeader from './components/MyHeader.vue'
+import TheInstructions from './components/TheInstructions.vue';
+import LasPalabras from './components/LasPalabras.vue';
+
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+
+components: {
+
+  MyHeader,
+  TheInstructions,
+  LasPalabras
+},
+
 }
+
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+* {
+  box-sizing: border-box;
 }
+
+html {
+  font-family: "Jost", sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap");
 </style>
