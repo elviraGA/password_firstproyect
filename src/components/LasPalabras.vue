@@ -3,13 +3,22 @@
     <base-card>
       <div>
         <ul v-for="palabra in palabras" :key="palabra">
-          {{
-            palabras.join(", ")
-          }}
+          {{ palabras.join(", ") }}
         </ul>
       </div>
       <the-timer></the-timer>
-      <base-button @click="mostrarNuevaPalabra">Nueva Palabra</base-button>
+      <base-button @click="mostrarNuevaPalabra">Otra Palabra</base-button>
+      <base-button @click="sumarAciertos">Acertamos</base-button>
+
+      <base-card>
+        <h2>⚔️Historial del juego⚔️</h2>
+        <ul>
+            <li v-if="PalabraAcertada">
+              Habéis acertado la palabra: tenéis {{aciertosActualizados}} puntos!!
+            </li>
+            <li v-if="PedirOtraPalabra">Has pedido otra palabra</li>
+        </ul>
+     </base-card>
     </base-card>
   </div>
 </template>
@@ -22,16 +31,25 @@ export default {
     TheTimer,
   },
 
+  computed: {
+      aciertosActualizados() {
+        return this.aciertos;
+      }
+    },
+
   data() {
     return {
       palabras: [],
+      aciertos: 0,
+      PalabraAcertada: false,
+      PedirOtraPalabra: false,
+
     };
   },
 
-
   methods: {
 
-    mostrarNuevaPalabra() {
+    getWords() {
       fetch("https://clientes.api.greenborn.com.ar/public-random-word")
         .then((response) => {
           if (response.ok) {
@@ -46,15 +64,30 @@ export default {
           this.palabras = palabras;
         });
     },
+
+    mostrarNuevaPalabra() {
+      this.getWords();
+      this.PedirOtraPalabra = true;
+    },
+
+    
+
+    sumarAciertos() {
+       this.PalabraAcertada = true;
+       this.getWords();
+       this.aciertos += 10
+    },
+    
+
   },
 
   //de esta forma cuando el componente se haga visible que lanza este método
   mounted() {
-    this.mostrarNuevaPalabra();
-    
+    this.getWords();
   },
 };
 </script>
+
 
 <style scoped>
 ul {
@@ -64,5 +97,16 @@ ul {
   padding: 1rem;
   margin: 2rem auto;
   max-width: 40rem;
+  list-style-type: none;
 }
+
+h2 {
+
+  text-align: center;
+  background-color: #f28dc8;
+  color: white;
+  
+
+}
+
 </style>

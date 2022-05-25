@@ -18,13 +18,16 @@
       Tampoco está permitido hacer señas, sonidos o expresiones faciales para
       ayudar a tu compañero de equipo.
     </p>
-    <base-button @click="cerrar">Vale, empezamos</base-button>
+    <base-button @click="setActivePage('las-palabras')">Vale, empezamos</base-button>
   </dialog>
 </template>
 
 <script>
 
 export default {
+
+  emits: ['set-page'],
+
 
   data() {
     return {
@@ -37,7 +40,12 @@ export default {
       this.cerrado = false;
     },
 
-  }
+    setActivePage(page) {
+      this.$emit('set-page', page);
+    },
+  },
+
+  
 };
 </script>
 

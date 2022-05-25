@@ -1,8 +1,8 @@
 <template>
   <div>
-  <button>
-    <slot></slot>
-  </button>
+    <button>
+      <slot></slot>
+    </button>
   </div>
 </template>
 
@@ -13,14 +13,15 @@ button {
   border-radius: 4px;
   background-color: #360032;
   color: white;
-  padding: 0.5rem 2rem;
   cursor: pointer;
-
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  margin: 1rem;
+  width: 12rem;
 }
 
 div {
-
-    text-align: center; 
+  text-align: center;
 }
 
 button:hover,

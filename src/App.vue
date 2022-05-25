@@ -2,7 +2,7 @@
   <my-header title="Password🎲"></my-header>
   <the-instructions></the-instructions>
   <las-palabras></las-palabras>
-  
+
 
 </template>
 
@@ -20,6 +20,14 @@ components: {
   TheInstructions,
   LasPalabras
 },
+
+data() {
+
+  return {
+
+    activePage: 'las-palabras'
+  }
+}
 
 }
 
