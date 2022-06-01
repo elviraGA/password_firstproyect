@@ -18,7 +18,9 @@ button {
   border-radius: 12px;
   margin: 1rem;
   width: 12rem;
+
 }
+
 
 div {
   text-align: center;

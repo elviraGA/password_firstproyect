@@ -3,22 +3,21 @@
     <base-card>
       <div>
         <ul v-for="palabra in palabras" :key="palabra">
-          {{ palabras.join(", ") }}
+          {{
+            palabras.join(", ")
+          }}
         </ul>
       </div>
       <the-timer></the-timer>
-      <base-button @click="mostrarNuevaPalabra">Otra Palabra</base-button>
-      <base-button @click="sumarAciertos">Acertamos</base-button>
-
-      <base-card>
-        <h2>⚔️Historial del juego⚔️</h2>
-        <ul>
-            <li v-if="PalabraAcertada">
-              Habéis acertado la palabra: tenéis {{aciertosActualizados}} puntos!!
-            </li>
-            <li v-if="PedirOtraPalabra">Has pedido otra palabra</li>
-        </ul>
-     </base-card>
+      <div>
+        <base-button align="center" @click="mostrarNuevaPalabra"
+          >Otra Palabra</base-button
+        >
+        <base-button align="center" @click="sumarAciertos"
+          >Acertamos</base-button
+        >
+        <p v-if="win">Has ganado 10 puntos!!!🥳</p>
+      </div>
     </base-card>
   </div>
 </template>
@@ -32,23 +31,20 @@ export default {
   },
 
   computed: {
-      aciertosActualizados() {
-        return this.aciertos;
-      }
+    aciertosActualizados() {
+      return this.aciertos;
     },
+  },
 
   data() {
     return {
       palabras: [],
-      aciertos: 0,
-      PalabraAcertada: false,
-      PedirOtraPalabra: false,
-
+      aciertos: 10,
+      win: false,
     };
   },
 
   methods: {
-
     getWords() {
       fetch("https://clientes.api.greenborn.com.ar/public-random-word")
         .then((response) => {
@@ -66,19 +62,16 @@ export default {
     },
 
     mostrarNuevaPalabra() {
+      this.win = false;
       this.getWords();
-      this.PedirOtraPalabra = true;
+      
     },
-
-    
 
     sumarAciertos() {
-       this.PalabraAcertada = true;
-       this.getWords();
-       this.aciertos += 10
+      this.getWords();
+      this.aciertos += 10;
+      this.win = true;
     },
-    
-
   },
 
   //de esta forma cuando el componente se haga visible que lanza este método
@@ -87,7 +80,6 @@ export default {
   },
 };
 </script>
-
 
 <style scoped>
 ul {
@@ -101,12 +93,15 @@ ul {
 }
 
 h2 {
-
   text-align: center;
   background-color: #f28dc8;
   color: white;
-  
-
 }
 
+p {
+  
+  text-align: center;
+  animation: slide-fade 0.7s ease-out forwards;
+
+}
 </style>

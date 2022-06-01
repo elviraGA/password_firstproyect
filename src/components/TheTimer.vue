@@ -3,9 +3,7 @@
     <base-card>
       <div  >{{ contador }} segundos🕒</div>
     </base-card>
-    <dialog open v-if="visible">
-      <p>Ohhhh, ¡el tiempo se ha acabado!⌛</p>
-    </dialog>
+
   </div>
 </template>
 
@@ -13,8 +11,8 @@
 export default {
   data() {
     return {
-      contador: 30,
-      visible: false,
+      contador: 60,
+     
     };
   },
 
@@ -27,8 +25,9 @@ export default {
           this.contador -= 1;
           this.iniciarContador();
         }, 1000);
-      } else {
-        this.visible = true;
+      } else {s
+        this.$router.push('/the-end');
+        
       }
     },
   },
@@ -45,4 +44,7 @@ export default {
 div {
   text-align: center;
 }
+
+
+
 </style>

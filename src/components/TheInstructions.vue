@@ -15,10 +15,9 @@
       compuestas.
     </p>
     <p>
-      Tampoco está permitido hacer señas, sonidos o expresiones faciales para
-      ayudar a tu compañero de equipo.
+      No hagas señas, sonidos o muecas para ayudar a tu compañero de equipo.😉
     </p>
-    <base-button @click="setActivePage('las-palabras')">Vale, empezamos</base-button>
+    <base-button @click="cerrar">Vale, empezamos</base-button>
   </dialog>
 </template>
 
@@ -26,8 +25,7 @@
 
 export default {
 
-  emits: ['set-page'],
-
+  
 
   data() {
     return {
@@ -35,14 +33,13 @@ export default {
     };
   },
 
+//gracias a Vue router podemos cambiar de vista de un componente a otro 
   methods: {
     cerrar() {
-      this.cerrado = false;
+      this.$router.push('/game');
     },
 
-    setActivePage(page) {
-      this.$emit('set-page', page);
-    },
+  
   },
 
   

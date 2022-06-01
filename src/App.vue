@@ -1,36 +1,21 @@
 <template>
   <my-header title="Password🎲"></my-header>
-  <the-instructions></the-instructions>
-  <las-palabras></las-palabras>
-
-
+  <router-view></router-view>
+  <my-footer></my-footer>
 </template>
 
 <script>
-import MyHeader from './components/MyHeader.vue'
-import TheInstructions from './components/TheInstructions.vue';
-import LasPalabras from './components/LasPalabras.vue';
+import MyHeader from "./components/MyHeader.vue";
+import MyFooter from "./components/MyFooter.vue"
 
 
 export default {
+  components: {
+    MyHeader,
+    MyFooter,
 
-components: {
-
-  MyHeader,
-  TheInstructions,
-  LasPalabras
-},
-
-data() {
-
-  return {
-
-    activePage: 'las-palabras'
-  }
-}
-
-}
-
+  },
+};
 </script>
 
 <style>
@@ -45,7 +30,6 @@ html {
 body {
   margin: 0;
 }
-
 
 @import url("https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap");
 </style>
